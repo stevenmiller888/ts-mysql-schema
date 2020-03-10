@@ -1,6 +1,6 @@
 {
   "name": "ts-mysql-schema",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A schema extractor for MySQL.",
   "license": "MIT",
   "repository": "stevenmiller888/ts-mysql-schema",
