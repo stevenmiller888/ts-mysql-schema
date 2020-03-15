@@ -2,7 +2,7 @@ import { MySQLSchema } from '../src'
 import util from 'util'
 
 const mySQLSchema = new MySQLSchema({
-  uri: 'mysql://root@127.0.0.1:3010/test'
+  uri: 'mysql://root@127.0.0.1:3310/test'
 })
 
 mySQLSchema

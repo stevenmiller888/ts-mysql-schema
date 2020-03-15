@@ -24,6 +24,7 @@ export interface SchemaColumn {
   readonly sqlType: string
   readonly optional: boolean
   readonly default: string | null
+  readonly index: SchemaIndexKey | null
 }
 
 interface QueryTable {
@@ -35,6 +36,22 @@ interface QueryColumn {
   data_type: SqlDataType
   is_nullable: string
   column_default: string
+  column_key: QueryIndexKey
+}
+
+type QueryIndexKey = 'PRI' | 'UNI' | 'MUL'
+
+export type SchemaIndexKey = 'primary' | 'unique' | 'nonunique'
+
+function getIndex(key: QueryIndexKey): SchemaIndexKey {
+  switch (key) {
+    case 'PRI':
+      return 'primary'
+    case 'UNI':
+      return 'unique'
+    case 'MUL':
+      return 'nonunique'
+  }
 }
 
 export interface MySQLSchemaOptions {
@@ -83,7 +100,7 @@ export class MySQLSchema {
   private async queryColumns(tableName: string): Promise<SchemaColumns> {
     const columns = await this.query<QueryColumn>(
       sql`
-        SELECT column_name, data_type, is_nullable, column_default
+        SELECT column_name, data_type, is_nullable, column_default, column_key
         FROM information_schema.columns
         WHERE table_name = ${tableName}
         AND table_schema = ${this.config.schema}`
@@ -95,7 +112,8 @@ export class MySQLSchema {
         sqlType: column.data_type,
         tsType: sqlTypeToTsType(column.data_type),
         optional: column.is_nullable === 'YES',
-        default: column.column_default
+        default: column.column_default,
+        index: column.column_key ? getIndex(column.column_key) : null
       }
     })
   }

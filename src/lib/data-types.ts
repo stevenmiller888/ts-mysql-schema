@@ -37,8 +37,5 @@ export enum TsDataType {
   BOOLEAN = 'boolean',
   STRING = 'string',
   NUMBER = 'number',
-  ARRAY = 'array',
-  DATE = 'date',
-  ENUM = 'enum',
-  NULL = 'null'
+  DATE = 'date'
 }

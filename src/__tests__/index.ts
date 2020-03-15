@@ -3,7 +3,7 @@ import { MySQLSchema } from '../'
 describe('MySQLSchema', () => {
   it('extracts the schema', async () => {
     const mySQLSchema = new MySQLSchema({
-      uri: 'mysql://root@127.0.0.1:3010/test'
+      uri: 'mysql://root@127.0.0.1:3310/test'
     })
 
     const schema = await mySQLSchema.getSchema()
@@ -12,7 +12,7 @@ describe('MySQLSchema', () => {
         "config": Object {
           "host": "127.0.0.1",
           "password": "",
-          "port": "3010",
+          "port": "3310",
           "schema": "test",
           "scheme": "mysql",
           "username": "root",
@@ -22,6 +22,7 @@ describe('MySQLSchema', () => {
             "columns": Array [
               Object {
                 "default": null,
+                "index": null,
                 "name": "id",
                 "optional": false,
                 "sqlType": "varbinary",
@@ -29,6 +30,7 @@ describe('MySQLSchema', () => {
               },
               Object {
                 "default": null,
+                "index": null,
                 "name": "visibility",
                 "optional": false,
                 "sqlType": "enum",
@@ -41,6 +43,7 @@ describe('MySQLSchema', () => {
             "columns": Array [
               Object {
                 "default": null,
+                "index": "primary",
                 "name": "id",
                 "optional": false,
                 "sqlType": "varbinary",
@@ -48,6 +51,7 @@ describe('MySQLSchema', () => {
               },
               Object {
                 "default": "CURRENT_TIMESTAMP",
+                "index": null,
                 "name": "created",
                 "optional": false,
                 "sqlType": "timestamp",
@@ -55,14 +59,24 @@ describe('MySQLSchema', () => {
               },
               Object {
                 "default": "1",
+                "index": null,
                 "name": "enabled",
-                "optional": true,
+                "optional": false,
                 "sqlType": "tinyint",
                 "tsType": "boolean",
               },
               Object {
                 "default": null,
+                "index": null,
                 "name": "friends",
+                "optional": false,
+                "sqlType": "int",
+                "tsType": "number",
+              },
+              Object {
+                "default": null,
+                "index": "nonunique",
+                "name": "project",
                 "optional": true,
                 "sqlType": "int",
                 "tsType": "number",
