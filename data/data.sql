@@ -13,9 +13,13 @@ USE test;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id      VARBINARY(24) NOT NULL,
-  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  enabled BOOLEAN DEFAULT TRUE,
-  friends INT
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  enabled BOOLEAN DEFAULT TRUE NOT NULL,
+  friends INT NOT NULL,
+  project INT,
+
+  PRIMARY KEY(id),
+  INDEX(project)
 );
 
 -- 

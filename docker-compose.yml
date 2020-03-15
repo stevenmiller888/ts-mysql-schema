@@ -10,7 +10,7 @@ services:
   mysql:
     image: mysql:5.7
     ports:
-      - '3010:3306'
+      - '3310:3306'
     volumes:
       - ./data/:/docker-entrypoint-initdb.d/:ro
     environment:

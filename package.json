@@ -27,7 +27,8 @@
     "lint": "eslint src/**/*.ts",
     "build": "tsc",
     "watch": "tsc -b -w",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "db-cli": "docker run -it --network host chaifeng/mycli mysql://127.0.0.1:3306/test"
   },
   "prettier": {
     "semi": false,
