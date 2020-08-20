@@ -22,6 +22,7 @@ export interface SchemaColumn {
   readonly name: string
   readonly tsType: string
   readonly sqlType: string
+  readonly sqlTypeSized: string
   readonly optional: boolean
   readonly default: string | null
   readonly index: SchemaIndexKey | null
@@ -34,6 +35,7 @@ interface QueryTable {
 interface QueryColumn {
   column_name: string
   data_type: SqlDataType
+  column_type: string
   is_nullable: string
   column_default: string
   column_key: QueryIndexKey
@@ -100,7 +102,7 @@ export class MySQLSchema {
   private async queryColumns(tableName: string): Promise<SchemaColumns> {
     const columns = await this.query<QueryColumn>(
       sql`
-        SELECT column_name, data_type, is_nullable, column_default, column_key
+        SELECT column_name, data_type, column_type, is_nullable, column_default, column_key
         FROM information_schema.columns
         WHERE table_name = ${tableName}
         AND table_schema = ${this.config.schema}`
@@ -110,6 +112,7 @@ export class MySQLSchema {
       return {
         name: column.column_name,
         sqlType: column.data_type,
+        sqlTypeSized: column.column_type,
         tsType: sqlTypeToTsType(column.data_type),
         optional: column.is_nullable === 'YES',
         default: column.column_default,
