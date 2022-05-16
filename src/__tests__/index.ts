@@ -26,6 +26,7 @@ describe('MySQLSchema', () => {
                 "name": "id",
                 "optional": false,
                 "sqlType": "varbinary",
+                "sqlTypeSized": "varbinary(24)",
                 "tsType": "string",
               },
               Object {
@@ -34,6 +35,7 @@ describe('MySQLSchema', () => {
                 "name": "visibility",
                 "optional": false,
                 "sqlType": "enum",
+                "sqlTypeSized": "enum('public', 'private')",
                 "tsType": "string",
               },
             ],
@@ -47,6 +49,7 @@ describe('MySQLSchema', () => {
                 "name": "id",
                 "optional": false,
                 "sqlType": "varbinary",
+                "sqlTypeSized": "varbinary(24)",
                 "tsType": "string",
               },
               Object {
@@ -55,6 +58,7 @@ describe('MySQLSchema', () => {
                 "name": "created",
                 "optional": false,
                 "sqlType": "timestamp",
+                "sqlTypeSized": "timestamp",
                 "tsType": "date",
               },
               Object {
@@ -63,6 +67,7 @@ describe('MySQLSchema', () => {
                 "name": "enabled",
                 "optional": false,
                 "sqlType": "tinyint",
+                "sqlTypeSized": "tinyint(1)",
                 "tsType": "boolean",
               },
               Object {
@@ -71,6 +76,7 @@ describe('MySQLSchema', () => {
                 "name": "friends",
                 "optional": false,
                 "sqlType": "int",
+                "sqlTypeSized": "int",
                 "tsType": "number",
               },
               Object {
@@ -79,6 +85,7 @@ describe('MySQLSchema', () => {
                 "name": "project",
                 "optional": true,
                 "sqlType": "int",
+                "sqlTypeSized": "int",
                 "tsType": "number",
               },
             ],
